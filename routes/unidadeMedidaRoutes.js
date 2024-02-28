@@ -19,19 +19,9 @@ const unidadesMedida = [
   { id: 14, nome: 'Teste 14', ativo : true },
 ];
 
-router.post('/buscar-geral-paginado', (req, res) => {
-  const pageNumber = parseInt(req.query.pagina) || 1;
-  const pageSize = parseInt(req.query.tamanho) || 10;
-  const paginatedResponse = generatePaginatedResponse(pageNumber, pageSize, unidadesMedida);
- 
-  res.json(paginatedResponse);
-});
-
 router.post('/buscar-com-parametros-paginado', (req, res) => {
-  const pageNumber = parseInt(req.query.pagina) || 1;
-  const pageSize = parseInt(req.query.tamanho) || 10;
-  const paginatedResponse = generatePaginatedResponse(pageNumber+1, pageSize, unidadesMedida);
- 
+  const { tamanho, pagina } = req.body;
+  const paginatedResponse = generatePaginatedResponse(pagina, tamanho, unidadesMedida);
   res.json(paginatedResponse);
 });
 

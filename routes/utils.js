@@ -17,14 +17,14 @@ const generateFakeToken = () => {
   const generatePaginatedResponse = (pageNumber, pageSize, unidadesMedida) => {
     const totalElements = unidadesMedida.length;
     const totalPages = Math.ceil(totalElements / pageSize);
-    const startIndex = (pageNumber - 1) * pageSize;
+    const startIndex = (pageNumber) * pageSize;
     const endIndex = Math.min(startIndex + pageSize, totalElements);
     const content = unidadesMedida.slice(startIndex, endIndex);
    
     return {
       content,
-      first: pageNumber === 1,
-      last: pageNumber === totalPages,
+      first: pageNumber === 0,
+      last: pageNumber === totalPages-1,
       number: pageNumber,
       size: pageSize,
       pageable: { pageNumber : pageNumber},
