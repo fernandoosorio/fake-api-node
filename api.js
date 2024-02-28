@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const jwt = require('jsonwebtoken');
 
 const app = express();
 const PORT = 3000;
@@ -23,7 +24,6 @@ const unidadesMedida = [
   { id: 12, nome: 'Teste 12', ativo : true },
   { id: 13, nome: 'Teste 13', ativo : true },
   { id: 14, nome: 'Teste 14', ativo : true },
-  // Add more data as needed
 ];
 
 const generateFakeToken = () => {
@@ -31,15 +31,14 @@ const generateFakeToken = () => {
   const payload = {
     id: 1,
     nome: 'Fernando',
-    login: '12345678',
-    cpf: '12345678',
+    login: '123456789',
+    cpf: '123456789',
     iat: Math.floor(Date.now() / 1000),
-    exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 100, // 100 days in the future
+    exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 100, // 100 dias no futuro
   };
   return jwt.sign(payload, secretKey);
 };
 
-// Simulate paginated response
 const generatePaginatedResponse = (pageNumber, pageSize) => {
   const totalElements = unidadesMedida.length;
   const totalPages = Math.ceil(totalElements / pageSize);
@@ -53,18 +52,15 @@ const generatePaginatedResponse = (pageNumber, pageSize) => {
     last: pageNumber === totalPages,
     number: pageNumber,
     size: pageSize,
-    pageable: {
-      // You can customize Pageable properties if needed
-    },
+    pageable: {},
     totalElements,
     totalPages,
   };
 };
 
-// GET endpoint for paginated data 
-app.post('/unidade-medida/buscarPaginado', (req, res) => {
+app.get('/unidade-medida/buscarPaginado', (req, res) => {
   const pageNumber = parseInt(req.query.pageNumber) || 1;
-  const pageSize = parseInt(req.query.pageSize) || 10; // Default page size is 10
+  const pageSize = parseInt(req.query.pageSize) || 10;
 
   const paginatedResponse = generatePaginatedResponse(pageNumber, pageSize);
 
@@ -83,9 +79,9 @@ app.post('/login', (req, res) => {
   res.json({
     id: 1,
     nome: 'Fernando',
-    login: '12345678',
+    login: '123456789',
     token,
-    cpf: '12345678',
+    cpf: '123456789',
   });
 });
 
