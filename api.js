@@ -45,25 +45,34 @@ const generatePaginatedResponse = (pageNumber, pageSize) => {
   const startIndex = (pageNumber - 1) * pageSize;
   const endIndex = Math.min(startIndex + pageSize, totalElements);
   const content = unidadesMedida.slice(startIndex, endIndex);
-
+ 
   return {
     content,
     first: pageNumber === 1,
     last: pageNumber === totalPages,
     number: pageNumber,
     size: pageSize,
-    pageable: {},
+    pageable: { pageNumber : pageNumber},
     totalElements,
     totalPages,
   };
 };
 
-app.post('/unidade-medida/buscarPaginado', (req, res) => {
-  const pageNumber = parseInt(req.query.pageNumber) || 1;
-  const pageSize = parseInt(req.query.pageSize) || 10;
-
+app.post('/unidade-medida/buscar-geral-paginado', (req, res) => {
+  const pageNumber = parseInt(req.query.pagina) || 1;
+  const pageSize = parseInt(req.query.tamanho) || 10;
   const paginatedResponse = generatePaginatedResponse(pageNumber, pageSize);
+ 
+  res.json(paginatedResponse);
+});
 
+app.post('/unidade-medida/buscar-com-parametros-paginado', (req, res) => {
+  const pageNumber = parseInt(req.query.pagina) || 1;
+  const pageSize = parseInt(req.query.tamanho) || 10;
+  console.log(' buscar-com-parametros-paginado pageNumber', pageNumber);
+  console.log('pageSize', pageSize);
+  const paginatedResponse = generatePaginatedResponse(pageNumber+1, pageSize);
+ 
   res.json(paginatedResponse);
 });
 
