@@ -58,7 +58,7 @@ const generatePaginatedResponse = (pageNumber, pageSize) => {
   };
 };
 
-app.get('/unidade-medida/buscarPaginado', (req, res) => {
+app.post('/unidade-medida/buscarPaginado', (req, res) => {
   const pageNumber = parseInt(req.query.pageNumber) || 1;
   const pageSize = parseInt(req.query.pageSize) || 10;
 
