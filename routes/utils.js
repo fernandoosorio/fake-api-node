@@ -32,6 +32,11 @@ const generateFakeToken = () => {
       totalPages,
     };
   };
+
+  const getById = (id, unidadesMedida) => {
+    //encontrar no array unidadesMedida pelo id
+    return unidadesMedida.find((unidadeMedida) => unidadeMedida.id == id);
+  };
   
 
-module.exports = { generateFakeToken, generatePaginatedResponse };
+module.exports = { generateFakeToken, generatePaginatedResponse , getById};

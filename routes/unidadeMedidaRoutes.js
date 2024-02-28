@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const generatePaginatedResponse = require('./utils').generatePaginatedResponse;
+const getById = require('./utils').getById;
 
 const unidadesMedida = [
   { id: 1, nome: 'Gram', ativo : true },
@@ -23,6 +24,12 @@ router.post('/buscar-com-parametros-paginado', (req, res) => {
   const { tamanho, pagina } = req.body;
   const paginatedResponse = generatePaginatedResponse(pagina, tamanho, unidadesMedida);
   res.json(paginatedResponse);
+});
+
+router.get('/:id', (req, res) => {
+  const { id } = req.params;
+  const resposta = getById(id, unidadesMedida);
+  res.json(resposta);
 });
 
 router.get('/', (req, res) => {
