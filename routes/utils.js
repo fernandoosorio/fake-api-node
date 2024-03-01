@@ -14,7 +14,11 @@ const generateFakeToken = () => {
     return jwt.sign(payload, secretKey);
   };
   
-  const generatePaginatedResponse = (pageNumber, pageSize, unidadesMedida) => {
+  const generatePaginatedResponse = (pageNumber, pageSize , nome, unidadesMedida) => {
+  
+    if(nome){
+      unidadesMedida = unidadesMedida.filter((unidadeMedida) => unidadeMedida.nome.toLowerCase().includes(nome.toLowerCase()));
+    }
     const totalElements = unidadesMedida.length;
     const totalPages = Math.ceil(totalElements / pageSize);
     const startIndex = (pageNumber) * pageSize;
@@ -27,7 +31,7 @@ const generateFakeToken = () => {
       last: pageNumber === totalPages-1,
       number: pageNumber,
       size: pageSize,
-      pageable: { pageNumber : pageNumber},
+      pageable: { pageNumber : pageNumber, pageSize : pageSize},
       totalElements,
       totalPages,
     };
