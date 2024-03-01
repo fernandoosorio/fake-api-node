@@ -22,7 +22,7 @@ const unidadesMedida = [
 
 router.post('/buscar-com-parametros-paginado', (req, res) => {
   const { tamanho, pagina } = req.body;
-  const paginatedResponse = generatePaginatedResponse(pagina, tamanho, unidadesMedida);
+  const paginatedResponse = generatePaginatedResponse(pagina |0, tamanho |10, unidadesMedida);
   res.json(paginatedResponse);
 });
 
