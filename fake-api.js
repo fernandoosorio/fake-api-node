@@ -10,10 +10,12 @@ app.use(bodyParser.json());
 
 const unidadeMedidaRoutes = require('./routes/unidadeMedidaRoutes');
 const authRoutes = require('./routes/authRoutes');
+const marcaRoutes = require('./routes/marcaRoutes');
 
-app.use('/unidade-medida', unidadeMedidaRoutes);
+
 app.use('', authRoutes);
-
+app.use('/unidade-medida', unidadeMedidaRoutes);
+app.use('/marca', marcaRoutes);
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });

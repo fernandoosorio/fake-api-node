@@ -33,7 +33,7 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-  const { nome, ativo } = req.body;
+  const { nome, ativo, descricao } = req.body;
 
   // Simular a geração de um novo ID (para um ambiente real, use um mecanismo adequado, como um banco de dados)
   const novoId = unidadesMedida.length + 1;
@@ -42,11 +42,13 @@ router.post('/', (req, res) => {
     id: novoId,
     nome,
     ativo,
+    descricao
   };
 
   unidadesMedida.push(novaUnidadeMedida);
+  //enviar para API apenas os valores, sem novaUnidadeMedida
 
-  res.status(201).json({ novaUnidadeMedida });
+  res.status(201).json({  id: novoId, nome, ativo, descricao });
 });
 
 
