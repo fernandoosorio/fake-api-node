@@ -3,15 +3,17 @@ const router = express.Router();
 const generatePaginatedResponse = require('./utils').generatePaginatedResponse;
 const getById = require('./utils').getById;
 
+//tornar marcas disponível para outros modulos
+
 const marcas = [
   { id: 1, nome: 'Dell', ativo : true , descricao: 'Unidade de medida de massa'},
   { id: 2, nome: 'Positivo', ativo : true, descricao: 'Unidade de medida de volume'},
-  { id: 3, nome: 'mesa 3', ativo : true, descricao : 'descricao x' },
-  { id: 4, nome: 'mesa 4', ativo : true, descricao : 'descricao x' },
-  { id: 5, nome: 'mesa 5', ativo : true, descricao : 'descricao x' },
-  { id: 6, nome: 'mesa 6', ativo : true, descricao : 'descricao x' },
-  { id: 7, nome: 'mesa 7', ativo : true, descricao : 'descricao x' },
-  { id: 8, nome: 'mesa 8', ativo : true, descricao : 'descricao x' },
+  { id: 3, nome: 'Marca da Mesa', ativo : true, descricao : 'descricao x' },
+  { id: 4, nome: 'Marca da Cadeira', ativo : true, descricao : 'descricao x' },
+  { id: 5, nome: 'Ortobom 5', ativo : true, descricao : 'descricao x' },
+  { id: 6, nome: 'Mareli 6', ativo : true, descricao : 'descricao x' },
+  { id: 7, nome: 'Chevrolet 7', ativo : true, descricao : 'descricao x' },
+  { id: 8, nome: 'Apple 8', ativo : true, descricao : 'descricao x' },
   { id: 9, nome: 'mesa 9', ativo : true, descricao : 'descricao x' },
   { id: 10, nome: 'mesa 10', ativo : true, descricao : 'descricao x' },
   { id: 11, nome: 'mesa 11', ativo : true, descricao : 'descricao x' },
@@ -30,6 +32,10 @@ router.get('/:id', (req, res) => {
   const { id } = req.params;
   const resposta = getById(id, marcas);
   res.json(resposta);
+});
+
+router.get('/autocomplete/get-all', (req, res) => {
+  res.json(marcas);
 });
 
 router.post('/', (req, res) => {
@@ -61,7 +67,6 @@ router.put('/', (req, res) => {
   if (index !== -1) {
     marcas[index] = { id: parseInt(id), nome, ativo, descricao };
     const retorno = marcas[index];
-    console.log(retorno);
     res.json(retorno);
   } else {
     res.status(404).json({ success: false, message: 'Unidade de medida não encontrada' });
@@ -70,3 +75,4 @@ router.put('/', (req, res) => {
 
 
 module.exports = router;
+

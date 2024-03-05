@@ -5,8 +5,8 @@ const getById = require('./utils').getById;
 
 const unidadesMedida = [
   { id: 1, nome: 'Gram', ativo : true , descricao: 'Unidade de medida de massa'},
-  { id: 2, nome: 'Liter', ativo : true, descricao: 'Unidade de medida de volume'},
-  { id: 3, nome: 'Teste 3', ativo : true, descricao : 'descricao x' },
+  { id: 100, nome: 'Liter', ativo : true, descricao: 'Unidade de medida de volume'},
+  { id: 30, nome: 'Teste 30', ativo : true, descricao : 'descricao x' },
   { id: 4, nome: 'Teste 4', ativo : true, descricao : 'descricao x' },
   { id: 5, nome: 'Teste 5', ativo : true, descricao : 'descricao x' },
   { id: 6, nome: 'Teste 6', ativo : true, descricao : 'descricao x' },
@@ -61,7 +61,6 @@ router.put('/', (req, res) => {
   if (index !== -1) {
     unidadesMedida[index] = { id: parseInt(id), nome, ativo, descricao };
     const retorno = unidadesMedida[index];
-    console.log(retorno);
     res.json(retorno);
   } else {
     res.status(404).json({ success: false, message: 'Unidade de medida não encontrada' });
