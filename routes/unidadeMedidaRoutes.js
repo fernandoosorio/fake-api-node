@@ -67,5 +67,9 @@ router.put('/', (req, res) => {
   }
 });
 
+router.get('/autocomplete/get-all', (req, res) => {
+  res.json(unidadesMedida);
+});
+
 
 module.exports = router;

@@ -14,6 +14,7 @@ const marcaRoutes = require('./routes/marcaRoutes');
 const localRoutes = require('./routes/localRoutes');
 const responsavelRoutes = require('./routes/responsavelRoutes');
 const produtoRoutes = require('./routes/produtoRoutes');
+const infraRoutes = require('./routes/infraRoutes');
 
 app.use('', authRoutes);
 app.use('/unidade-medida', unidadeMedidaRoutes);
@@ -21,6 +22,7 @@ app.use('/marca', marcaRoutes);
 app.use('/local', localRoutes);
 app.use('/responsavel', responsavelRoutes);
 app.use('/produto', produtoRoutes);
+app.use('/infra', infraRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
