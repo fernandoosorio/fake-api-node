@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const generatePaginatedResponse = require('./utils').generatePaginatedResponse;
+const getById = require('./utils').getById;
 
 const setores = [
   { id: 1, nome: 'Divisão de Informática', ativo : true },
@@ -25,5 +26,17 @@ router.post('/buscar-com-parametros-paginado', (req, res) => {
   res.json(paginatedResponse);
 });
 
+router.get('/:id', (req, res) => {
+  const { id } = req.params;
+  const resposta = getById(id, localidades);
+  res.json(resposta);
+});
+
+router.get('/autocomplete/get-all', (req, res) => {
+  localidades.forEach(localidade => {
+    localidade.setor = setores.find(setor => setor.id === localidade.setor_id);
+  });
+  res.json(localidades);
+});
 
 module.exports = router;
