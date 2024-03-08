@@ -76,6 +76,13 @@ const generateFakeToken = () => {
     { id: 2, produto_id: 2 , localidade_id : 2, responsavel_id : 2,  ativo : true, tombamento : '124', tombamentoAntigo : 'Antigo2', status: 'EM_USO' },
     { id: 3, produto_id :3 , localidade_id : 3, responsavel_id : 3,  ativo : true, tombamento : '125', tombamentoAntigo : 'Antigo3', status: 'EM_USO' },
     { id: 4, produto_id :1 , localidade_id : 4, responsavel_id : 4,  ativo : true, tombamento : '277', status: 'EM_USO' },
+    { id: 5, produto_id :1 , localidade_id : 3, responsavel_id : 4,  ativo : true, tombamento : '278', status: 'EM_USO' },
+    { id: 6, produto_id :3 , localidade_id : 3, responsavel_id : 4,  ativo : true, tombamento : '279', status: 'EM_USO' },
+    { id: 7, produto_id :1 , localidade_id : 3, responsavel_id : 4,  ativo : true, tombamento : '280', status: 'EM_USO' },
+    { id: 8, produto_id :3 , localidade_id : 3, responsavel_id : 4,  ativo : true, tombamento : '281', status: 'EM_USO' },
+    { id: 9, produto_id :2 , localidade_id : 3, responsavel_id : 4,  ativo : true, tombamento : '282', status: 'EM_USO' },
+
+
 
   ];
 

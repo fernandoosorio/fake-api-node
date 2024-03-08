@@ -39,4 +39,30 @@ router.get('/autocomplete/get-all', (req, res) => {
   res.json(localidades);
 });
 
+router.post('/autocomplete/sou-responsavel', (req, res) => {
+  const {entidade}  = req.body;
+  //pegar id e papel papelSelecionado de usuario
+  const { id, papelSelecionado } = entidade;
+  
+  //se papelSelecionado for Administrador, retornar todas as localidades
+  if(papelSelecionado.papel === 'Administrador'){
+    localidades.forEach(localidade => {
+      localidade.setor = setores.find(setor => setor.id === localidade.setor_id);
+    });
+   
+    res.json(localidades);
+
+  }else{ //se papelSelecionado for Unidade, retornar localidades do setor do usuario
+    const localidadesDoSetor = localidades.filter(localidade => localidade.setor_id === id);
+    localidadesDoSetor.forEach(localidade => {
+      localidade.setor = setores.find(setor => setor.id === localidade.setor_id);
+    });
+  
+    res.json(localidadesDoSetor);
+  }
+
+
+});
+
+
 module.exports = router;

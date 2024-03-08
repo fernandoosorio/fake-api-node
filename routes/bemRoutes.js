@@ -70,5 +70,18 @@ router.get('/autocomplete/get-all', (req, res) => {
   res.json(unidadesMedida);
 });
 
+router.post('/autocomplete/sou-responsavel', (req, res) => {
+  const {entidade}  = req.body;
+  const { id } = entidade;
+  
+  const bensDoLocalidade = bens.filter(bem => bem.localidade_id === id);
+  //acrescentar a associação de produto aos bensDoLocalidade
+  bensDoLocalidade.forEach(bem => {
+    bem.produto = produtos.find(produto => produto.id === bem.produto_id);
+  });
+  res.json(bensDoLocalidade);
+  
+});
+
 
 module.exports = router;
